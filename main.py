@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 
 async def main():
 
-    bot = Bot(token="5340042795:AAE6p8mpYWHwIIvA_0qW2195oSNxwkVgAuE", parse_mode = 'html')
+    bot = Bot(token="TOKEN", parse_mode = 'html')
 
     dp = Dispatcher(bot)
 
