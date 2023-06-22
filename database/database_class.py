@@ -22,7 +22,9 @@ class DataBase:
 
   def append(self,values: list, name_table: str = 'users'):
 
-    self.cur.execute(f"""INSERT INTO {name_table} VALUES({','.join(['"' + str(t) + '"' for t in values])});""")
+    self.cur.execute(
+        f"""INSERT INTO {name_table} VALUES({','.join([f'"{str(t)}"' for t in values])});"""
+    )
 
     self.conn.commit()
 
@@ -60,7 +62,7 @@ class DataBase:
 
     self.cur.execute(f'SELECT * FROM {name_table} WHERE id = ?',[id])
 
-    return True if len(self.cur.fetchall()) > 0 else False
+    return len(self.cur.fetchall()) > 0
 
   def update(self, key1: str, value1: str, key2: str, value2: str, name_table: str = 'users'):
 
@@ -82,7 +84,9 @@ class DataBase:
 
     """
 
-    self.cur.execute(f"""CREATE TABLE IF NOT EXISTS {name_table}({','.join([t + ' ' + param[t] for t in param])});""")
+    self.cur.execute(
+        f"""CREATE TABLE IF NOT EXISTS {name_table}({','.join([f'{t} {param[t]}' for t in param])});"""
+    )
 
     self.conn.commit()
 
@@ -138,7 +142,9 @@ class DataBase:
 
   def append(self,values: list, name_table: str = 'users'):
 
-    self.cur.execute(f"""INSERT INTO {name_table} VALUES({','.join(['"' + str(t) + '"' for t in values])});""")
+    self.cur.execute(
+        f"""INSERT INTO {name_table} VALUES({','.join([f'"{str(t)}"' for t in values])});"""
+    )
 
     self.conn.commit()
 
@@ -176,7 +182,7 @@ class DataBase:
 
     self.cur.execute(f'SELECT * FROM {name_table} WHERE id = ?',[id])
 
-    return True if len(self.cur.fetchall()) > 0 else False
+    return len(self.cur.fetchall()) > 0
 
   def update(self, key1: str, value1: str, key2: str, value2: str, name_table: str = 'users'):
 
@@ -198,7 +204,9 @@ class DataBase:
 
     """
 
-    self.cur.execute(f"""CREATE TABLE IF NOT EXISTS {name_table}({','.join([t + ' ' + param[t] for t in param])});""")
+    self.cur.execute(
+        f"""CREATE TABLE IF NOT EXISTS {name_table}({','.join([f'{t} {param[t]}' for t in param])});"""
+    )
 
     self.conn.commit()
 

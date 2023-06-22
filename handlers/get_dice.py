@@ -14,7 +14,7 @@ async def get_dice(msg: types.Message):
 
     return None
 
-  
+
 
   people = db.select(msg.from_user.id)
 
@@ -24,19 +24,17 @@ async def get_dice(msg: types.Message):
 
     await msg.reply(f"Ты выиграл {money}")
 
+  elif people.money > 0:
+
+    money = random.randint(-people.money,-1) if people.money <= 100 else random.randint(-100,-1)
+
+    await msg.reply(f"Ты приграл {money}")
+
   else:
 
-    if people.money > 0:
+    await msg.answer('У вас не хватает денег')
 
-      money = random.randint(-people.money,-1) if people.money <= 100 else random.randint(-100,-1)
 
-      await msg.reply(f"Ты приграл {money}")
-
-    else:
-
-      await msg.answer('У вас не хватает денег')
-
-    
 
   people.money += money
 
